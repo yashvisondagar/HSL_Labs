@@ -273,7 +273,14 @@ const HSLDashboard = () => {
             <h1 className="text-3xl font-semibold tracking-tight">
               Daily Operations
             </h1>
-            <p className="text-sm text-gray-500 mt-1">, December 17, 2025</p>
+            <p className="text-sm text-gray-500 mt-1">
+              {new Date().toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
           </div>
           <div className="flex gap-2">
             <button className="px-4 py-2 border border-gray-200 rounded-xl flex items-center gap-2 hover:bg-gray-50 transition-colors">
@@ -333,6 +340,46 @@ const HSLDashboard = () => {
             value={`$${kpi.revenue.toLocaleString()}`}
             badge="+8%"
             color="green"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <ChartWidget
+            title="Inventory Distribution"
+            type="pie"
+            data={[30, 45, 25]}
+            colors={["#3B82F6", "#10B981", "#F59E0B"]}
+          />
+
+          <AnalyticsCard
+            title="Revenue"
+            value="$24,850"
+            trend="+8%"
+            color="green"
+          />
+          <ChartWidget
+            title="Patient Flow (Last 7 Days)"
+            type="bar"
+            data={[40, 60, 50, 70, 30, 80, 55]}
+            colors={[
+              "#3B82F6",
+              "#60A5FA",
+              "#2563EB",
+              "#3B82F6",
+              "#60A5FA",
+              "#2563EB",
+              "#3B82F6",
+            ]}
+          />
+
+          <ChartWidget
+            title="Revenue & New Patients (Last 7 Days)"
+            type="line"
+            data={[
+              [40, 60, 50, 70, 30, 60, 55],
+              [30, 90, 50, 60, 20, 70, 45],
+            ]}
+            colors={["#F40B1F", "#10B981"]}
           />
         </div>
 
@@ -534,6 +581,122 @@ const HSLDashboard = () => {
     </div>
   );
 };
+
+const AnalyticsCard = ({ title, value, trend, color }) => (
+  <div className="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
+    <p className="text-sm text-gray-500">{title}</p>
+    <p className="text-2xl font-semibold">{value}</p>
+    <span className={`text-sm font-medium text-${color}-600`}>{trend}</span>
+  </div>
+);
+
+const ChartWidget = ({ title, type = "bar", data = [], colors = [] }) => {
+  const maxVal = Math.max(...(type === "line" ? data.flat() : data), 1);
+
+  return (
+    <div className="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
+      <p className="text-sm text-gray-500 mb-2">{title}</p>
+
+      {type === "bar" && (
+        <div className="flex items-end h-32 gap-1">
+          {data.map((v, i) => (
+            <div
+              key={i}
+              className="flex-1 rounded-t-lg transition-all duration-300"
+              style={{
+                height: `${(v / maxVal) * 100}%`,
+                backgroundColor: colors[i] || "#3B82F6",
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {type === "line" && (
+        <svg
+          className="w-full h-32"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          {data.map((line, idx) => {
+            const lineColor = colors[idx] || "#3B82F6";
+            const points = line
+              .map((v, i) => {
+                const x = (i / (line.length - 1)) * 100;
+                const y = 100 - (v / maxVal) * 100;
+                return `${x},${y}`;
+              })
+              .join(" ");
+            return (
+              <polyline
+                key={idx}
+                fill="none"
+                stroke={lineColor}
+                strokeWidth="2"
+                points={points}
+              />
+            );
+          })}
+        </svg>
+      )}
+
+      {type === "pie" && (
+        <svg className="w-full h-32" viewBox="0 0 32 32">
+          {(() => {
+            const total = data.reduce((a, b) => a + b, 0);
+            let cumulative = 0;
+            return data.map((v, i) => {
+              const startAngle = (cumulative / total) * 2 * Math.PI;
+              cumulative += v;
+              const endAngle = (cumulative / total) * 2 * Math.PI;
+              const x1 = 16 + 16 * Math.cos(startAngle);
+              const y1 = 16 + 16 * Math.sin(startAngle);
+              const x2 = 16 + 16 * Math.cos(endAngle);
+              const y2 = 16 + 16 * Math.sin(endAngle);
+              const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
+              return (
+                <path
+                  key={i}
+                  d={`M16 16 L${x1} ${y1} A16 16 0 ${largeArc} 1 ${x2} ${y2} Z`}
+                  fill={colors[i] || "#3B82F6"}
+                />
+              );
+            });
+          })()}
+        </svg>
+      )}
+
+      {/* Optional x-axis labels for bar/line */}
+      {type !== "pie" && (
+        <div className="flex justify-between text-xs text-gray-400 mt-2">
+          {(type === "bar" ? data : data[0]).map((_, i) => (
+            <span key={i}>{i + 1}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+// const ChartWidget = ({ title, data, color }) => (
+//   <div className="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
+//     <p className="text-sm text-gray-500 mb-2">{title}</p>
+//     <div className="flex items-end h-32 gap-1">
+//       {data.map((v, i) => (
+//         <div
+//           key={i}
+//           className="flex-1 rounded-t-lg transition-all duration-300"
+//           style={{ height: `${v}%`, backgroundColor: color }}
+//         />
+//       ))}
+//     </div>
+//     <div className="flex justify-between text-xs text-gray-400 mt-2">
+//       {data.map((_, i) => (
+//         <span key={i}>{i + 1}</span>
+//       ))}
+//     </div>
+//   </div>
+// );
 
 const Kpi = ({ icon, label, value, badge, color }) => (
   <div className="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow">

@@ -1,70 +1,136 @@
-# Getting Started with Create React App
+# HSL Labs – Operations Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive healthcare operations dashboard built using **HTML, Tailwind CSS, and component‑based UI principles**. This project demonstrates real‑world lab workflows such as patient intake, disclosures, inventory, packaging, billing, and training management.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 Project Overview
 
-### `npm start`
+The **HSL Labs Dashboard** is designed to help laboratory staff and administrators quickly monitor daily operations, track task statuses, and manage critical workflows across devices (desktop, tablet, and mobile).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The UI focuses on:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Clarity and usability for healthcare staff
+- Clean, professional visual design
+- Responsive layouts for real‑world usage
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🎯 Assignment Objectives Covered
 
-### `npm run build`
+This project fulfills the following evaluation criteria:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ✅ Modern, clean, professional dashboard design
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Card‑based KPI layout
+- Clear visual hierarchy
+- Minimal, purposeful color usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ✅ Responsive UI (Desktop / Tablet / Mobile)
 
-### `npm run eject`
+- Desktop: full data table and KPIs
+- Tablet: adaptive grid and scrollable layouts
+- Mobile: card views, bottom navigation, slide‑in menu
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### ✅ Built using HTML + Tailwind CSS
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Tailwind utility classes used exclusively for styling
+- No external UI frameworks (Bootstrap, MUI, etc.)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### ✅ Component‑based & Blade‑compatible structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Reusable UI components (KPI cards, navigation items, tables)
+- Easily convertible to Laravel Blade partials
 
-## Learn More
+### ✅ Usability & accessibility considerations
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Clear labels and icons
+- Status indicators with text + icons (not color‑only)
+- Search, filtering, pagination, loading, and empty states
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ✅ Clear communication of design decisions
 
-### Code Splitting
+- Designed around real healthcare lab workflows
+- Optimized for daily operational monitoring
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🧩 Features Implemented
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Core Workflows
 
-### Making a Progressive Web App
+- **Patient Intake**
+- **Disclosures**
+- **Inventory Management**
+- **Packaging**
+- **Billing**
+- **Training**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Dashboard Capabilities
 
-### Advanced Configuration
+- KPI metrics overview
+- **Universal search:** allows searching across all patient names and action types, instantly filtering results across Pending, In Progress, and Completed views
+- Search and status filters
+- Paginated task list
+- **Real-time status updates:** when an action status is changed, the patient entry is automatically re-segregated into **Pending**, **In Progress**, or **Completed** views
+- Dynamic filtering ensures patients appear only under the correct status category
+- Status update actions via dropdown
+- Responsive navigation (top, side, bottom)
+- Dynamic current date and day display
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 🛠 Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **HTML5**
+- **Tailwind CSS**
+- **JavaScript (React for component structure)**
 
-### `npm run build` fails to minify
+> Note: Although implemented in React, the UI architecture is intentionally Blade‑compatible and can be directly translated into Laravel Blade templates.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📱 Responsiveness Strategy
+
+| Device  | UX Approach                         |
+| ------- | ----------------------------------- |
+| Desktop | Full table layout, expanded KPIs    |
+| Tablet  | Condensed grid, scrollable content  |
+| Mobile  | Card‑based lists, bottom navigation |
+
+---
+
+## 🧠 Design Rationale
+
+Healthcare staff need:
+
+- Fast access to task status
+- Clear prioritization
+- Minimal cognitive load
+
+This dashboard prioritizes **speed, clarity, and accessibility**, ensuring efficient daily operations across different roles and devices.
+
+---
+
+## 🚀 Getting Started
+
+```bash
+npm install
+npm start
+```
+
+---
+
+## 📁 Repository
+
+**GitHub:** `HSL_Labs`
+
+---
+
+## 👤 Author
+
+Developed as part of a UI/Frontend assignment to demonstrate dashboard design, Tailwind CSS proficiency, and component‑based thinking.
+
+---
+
+✅ This project intentionally focuses on **UI/UX quality and real‑world workflow representation** rather than backend integration.
