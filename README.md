@@ -1,3 +1,9 @@
+<img width="1877" height="822" alt="image" src="https://github.com/user-attachments/assets/1d88eecc-7f1f-465e-a5d2-c610b85f56a4" />
+<img width="1825" height="823" alt="image" src="https://github.com/user-attachments/assets/63810b50-7c27-4408-8439-fd4ae538d49f" />
+<img width="740" height="647" alt="image" src="https://github.com/user-attachments/assets/dc4a415b-8656-4294-8b9d-02893062a01d" />
+<img width="740" height="647" alt="image" src="https://github.com/user-attachments/assets/dbae4561-9c79-48c7-a277-4ca0f28d7390" />
+
+
 # HSL Labs – Operations Dashboard
 
 A modern, responsive healthcare operations dashboard built using **HTML, Tailwind CSS, and component‑based UI principles**. This project demonstrates real‑world lab workflows such as patient intake, disclosures, inventory, packaging, billing, and training management.
